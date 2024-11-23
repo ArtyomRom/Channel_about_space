@@ -1,5 +1,3 @@
-import pprint
-
 from common import get_the_file_extension, fetch_spacex_last_launch
 from dotenv import load_dotenv
 import requests
