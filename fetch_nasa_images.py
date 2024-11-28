@@ -1,23 +1,22 @@
-from common import get_the_file_extension, fetch_spacex_last_launch
-from dotenv import load_dotenv
+from common import get_the_file_extension, download_photo
+from contextlib import suppress
 import requests
 import os
 
-
-load_dotenv()
-def getting_images_from_nasa():
+def getting_images_from_nasa(params: dict):
     url = 'https://api.nasa.gov/planetary/apod'
-    params = {'api_key': os.getenv('NASA_API_KEY'), 'count': 30}
-    response = requests.get(url, params=params)
+    parameters = params.copy()
+    parameters['count'] = 30
+    response = requests.get(url, params=parameters)
     response.raise_for_status()
     for image in response.json():
-        try:
+        with suppress(KeyError):
             file_name = get_the_file_extension(image['hdurl'])
-            fetch_spacex_last_launch(image['url'], f'images/nasa_{file_name}')
+            download_photo(image['url'], f'images/nasa_{file_name}', params)
             base_name = file_name.split('.')[0]
             text_file_path = f'{base_name}_text.txt'
             with open(f'images/nasa_{text_file_path}', 'w', encoding='utf-8') as text:
                 text.write(image['explanation'])
-        except KeyError:
-            continue
+
+
 

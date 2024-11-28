@@ -1,13 +1,9 @@
 from urllib.parse import urlparse
-from dotenv import load_dotenv
 import urllib
 import requests
-import os
 
-load_dotenv()
 
-def fetch_spacex_last_launch(url: str, path: str):
-    params = {'api_key': os.getenv('NASA_API_KEY')}
+def download_photo(url: str, path: str, params: dict) -> None:
     response = requests.get(url, params=params)
     response.raise_for_status()
     with open(path, 'wb') as file:
