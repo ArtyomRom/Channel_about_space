@@ -2,12 +2,12 @@ from common import download_photo
 import requests
 
 
-def getting_images_from_launch(params: dict, id=None):
+def get_images_from_launch(params: dict, id=None):
     if not id:
-        response = requests.get(f'https://api.spacexdata.com/v5/launches')
+        response = requests.get('https://api.spacexdata.com/v5/launches')
     else:
         parameters = {'id': id}
-        response = requests.get(f'https://api.spacexdata.com/v5/launches/', params=parameters)
+        response = requests.get('https://api.spacexdata.com/v5/launches/', params=parameters)
     response.raise_for_status()
     launches = response.json()
     count = 0
@@ -18,5 +18,3 @@ def getting_images_from_launch(params: dict, id=None):
             if launche['details']:
                 with open(f'images/spacex_{count}_text.txt', 'w', encoding='utf-8') as file:
                     file.write(launche['details'])
-                break
-

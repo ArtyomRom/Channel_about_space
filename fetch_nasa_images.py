@@ -1,9 +1,9 @@
 from common import get_the_file_extension, download_photo
 from contextlib import suppress
 import requests
-import os
 
-def getting_images_from_nasa(params: dict):
+
+def get_images_from_nasa(params: dict):
     url = 'https://api.nasa.gov/planetary/apod'
     parameters = params.copy()
     parameters['count'] = 30
@@ -17,6 +17,3 @@ def getting_images_from_nasa(params: dict):
             text_file_path = f'{base_name}_text.txt'
             with open(f'images/nasa_{text_file_path}', 'w', encoding='utf-8') as text:
                 text.write(image['explanation'])
-
-
-
