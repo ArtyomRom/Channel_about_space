@@ -1,7 +1,7 @@
 import os
 import requests
 
-def send_photo(link_tg_channel, tg_bot_api):
+def send_photos(link_tg_channel, tg_bot_api):
     photo_url = f'https://api.telegram.org/bot{tg_bot_api}/sendPhoto'
     data = {'chat_id': link_tg_channel}
 
