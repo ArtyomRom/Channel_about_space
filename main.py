@@ -13,7 +13,7 @@ def main():
     parser = argparse.ArgumentParser(
         description='Скачать фотографии земли, старты ракет или космоса'
     )
-    parser.add_argument('--launch_id', default=False,
+    parser.add_argument('--launch_id', default=None,
                         help='Введите ID старта, если такой присутствует')
     parser.add_argument('--nasa', default=False,
                         help='Получить фотографии от Nasa')
@@ -35,8 +35,6 @@ def main():
         get_images_from_launch(params, launch_id)
     if earth:
         get_images_of_the_earth(params)
-
-
 
 
 if __name__ == '__main__':
