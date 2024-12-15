@@ -11,7 +11,7 @@ def send_photos(link_tg_channel, tg_bot_api):
                 data['caption'] = get_text(filename)
                 file = {'photo': image}
                 requests.post(photo_url, files=file, data=data)
-        break
+
 
 def get_text(filename):
     base_name = filename.split('.')[0]
