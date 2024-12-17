@@ -1,14 +1,13 @@
 from fetch_launch_images import get_images_from_launch
 from fetch_earth_images import get_images_of_the_earth
 from fetch_nasa_images import get_images_from_nasa
-from dotenv import load_dotenv
+from config import get_env
 import pathlib
 import argparse
 import os
 
 
 def main():
-    load_dotenv()
     pathlib.Path('images').mkdir(parents=True, exist_ok=True)
     parser = argparse.ArgumentParser(
         description='Скачать фотографии земли, старты ракет или космоса'
@@ -28,14 +27,13 @@ def main():
     nasa = args.nasa
     launch = args.launch
     earth = args.earth
-    params = {'api_key': os.getenv('NASA_API_KEY')}
+    params = {'api_key': get_env('NASA_API_KEY')}
     if nasa:
         get_images_from_nasa(params)
     if launch:
         get_images_from_launch(params, launch_id)
     if earth:
         get_images_of_the_earth(params)
-
 
 if __name__ == '__main__':
     main()

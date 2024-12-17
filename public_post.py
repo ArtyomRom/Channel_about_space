@@ -1,9 +1,10 @@
 from tg_bot import send_photos
+from config import get_env
 import argparse
 import time
-import os
 
-def public_photos():
+
+def public_photos(link, tg_bot_api):
     parser = argparse.ArgumentParser(
         description='Публикация фото в телеграмм канал'
     )
@@ -11,8 +12,6 @@ def public_photos():
                         help='Введите время публикации')
     args = parser.parse_args()
     time_public = args.time_public
-    link = os.getenv('link_tg_channel')
-    tg_bot_api = os.getenv('tg_bot_api')
     time_public = int(time_public)
     while True:
         send_photos(link, tg_bot_api)
@@ -20,4 +19,6 @@ def public_photos():
 
 
 if __name__ == '__main__':
-    public_photos()
+    link = get_env('link_tg_channel')
+    tg_bot_api = get_env('TG_BOT_API')
+    public_photos(link, tg_bot_api)
