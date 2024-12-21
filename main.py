@@ -4,7 +4,7 @@ from fetch_nasa_images import get_images_from_nasa
 from config import get_env
 import pathlib
 import argparse
-import os
+
 
 
 def main():

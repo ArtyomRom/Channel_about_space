@@ -19,6 +19,6 @@ def public_photos(link, tg_bot_api):
 
 
 if __name__ == '__main__':
-    link = get_env('link_tg_channel')
+    link = get_env('LINK_TG_CHANNEL')
     tg_bot_api = get_env('TG_BOT_API')
     public_photos(link, tg_bot_api)
